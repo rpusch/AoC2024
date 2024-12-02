@@ -20,13 +20,11 @@ for(let line of input)
 console.log('part 1:',count);
 
 count = 0;
-let result;
 for(let line of input) {
-    for(let i=-1; i<line.length; i++) {
-        if(i < 0) result = testSafety(line);
-        else result = testSafety(line.toSpliced(i, 1));
+    let result = 0;
+    for(let i=-1; i<line.length && !result; i++) {
+        result = testSafety(line.filter((_,index) => i !== index));
         count += result;
-        if(result > 0) break;
     }
 }
 console.log('part 2:',count);
